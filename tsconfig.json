@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "paths": {
+      "@tauri-apps/api/core": ["./src/web-shims/core.ts"],
+      "@tauri-apps/api/event": ["./src/web-shims/event.ts"],
+      "@tauri-apps/api/path": ["./src/web-shims/path.ts"],
+      "@tauri-apps/api/window": ["./src/web-shims/window.ts"],
+      "@tauri-apps/api/dpi": ["./src/web-shims/dpi.ts"],
+      "@tauri-apps/api/app": ["./src/web-shims/app.ts"],
+      "@tauri-apps/api/webviewWindow": ["./src/web-shims/webviewWindow.ts"],
+      "@tauri-apps/plugin-http": ["./src/web-shims/http.ts"],
+      "@tauri-apps/plugin-dialog": ["./src/web-shims/dialog.ts"],
+      "@tauri-apps/plugin-opener": ["./src/web-shims/opener.ts"],
+      "@tauri-apps/plugin-updater": ["./src/web-shims/updater.ts"],
+      "tauri-plugin-libmpv-api": ["./src/web-shims/mpv.ts"]
+    },
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

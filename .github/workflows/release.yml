@@ -1,0 +1,33 @@
+name: Web build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: npm install --ignore-scripts
+      - name: Build website
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          PROXY_API_URL: ${{ secrets.PROXY_API_URL }}
+        run: npm run build
+      - name: Smoke-test production server
+        run: |
+          PORT=4173 npm start > /tmp/vega-web.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/api/health; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/vega-web.log
+          exit 1
