@@ -1,0 +1,33 @@
+.pwa-status {
+  position: fixed;
+  right: max(14px, env(safe-area-inset-right, 0px));
+  bottom: max(18px, env(safe-area-inset-bottom, 0px));
+  z-index: 3500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: min(540px, calc(100vw - 32px));
+  padding: 12px 15px;
+  border: 1px solid var(--outline-variant);
+  border-radius: 16px;
+  color: var(--on-surface);
+  background: var(--surface-container-highest);
+  box-shadow: 0 12px 40px rgba(0,0,0,.3);
+  font-size: 13px;
+}
+.pwa-status button {
+  min-width: 44px; min-height: 44px; padding: 8px 12px;
+  border: 1px solid var(--outline);
+  border-radius: 11px;
+  color: var(--on-surface);
+  background: var(--surface-container);
+  cursor: pointer;
+}
+@media (max-width: 760px) {
+  .pwa-status {
+    right: 12px;
+    left: 12px;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    flex-wrap: wrap;
+  }
+}

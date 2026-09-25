@@ -1,0 +1,168 @@
+.hero-container {
+  position: relative;
+  /* Break out of .layout-content horizontal padding */
+  width: calc(100% + calc(var(--spacing-gutter) * 2));
+  margin-left: calc(var(--spacing-gutter) * -1);
+  margin-right: calc(var(--spacing-gutter) * -1);
+  height: clamp(400px, 70vh, 800px);
+  margin-bottom: var(--spacing-xl);
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out;
+}
+
+.hero-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Fade into the background color at the bottom so there is no sharp edge */
+  background:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--surface-container-lowest) 94%, transparent) 0%,
+      color-mix(in srgb, var(--surface-container-lowest) 48%, transparent) 42%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to top,
+      var(--background) 0%,
+      color-mix(in srgb, var(--surface-container-lowest) 55%, transparent) 30%,
+      transparent 100%
+    );
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  z-index: 10;
+}
+
+.hero-logo {
+  max-width: 400px;
+  max-height: 150px;
+  object-fit: contain;
+  margin-bottom: var(--spacing-xs);
+}
+
+.hero-title {
+  color: var(--on-surface);
+  text-shadow: 0 4px 16px
+    color-mix(in srgb, var(--surface-container-lowest) 70%, transparent);
+  margin-bottom: var(--spacing-xs);
+}
+
+.hero-description {
+  color: var(--on-surface-variant);
+  text-shadow: 0 2px 10px
+    color-mix(in srgb, var(--surface-container-lowest) 70%, transparent);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.btn-play {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  padding: 12px 28px;
+  border-radius: var(--rounded-full);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-play:hover {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  filter: brightness(1.08);
+  transform: scale(1.05);
+}
+
+.btn-play.tv-focus {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.btn-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: var(--rounded-lg);
+  border: 1px solid var(--surface-variant);
+  color: var(--on-surface);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-info:hover {
+  background-color: var(--surface-container-highest);
+  transform: scale(1.05);
+}
+
+/* Skeleton State */
+.hero-container.skeleton {
+  background-color: var(--surface-container);
+}
+
+.hero-skeleton-bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.hero-skeleton-title {
+  width: min(420px, 70%);
+  height: 48px;
+}
+
+.hero-skeleton-copy {
+  width: min(360px, 62%);
+  height: 20px;
+}
+
+.hero-skeleton-copy-wide {
+  width: min(500px, 82%);
+}
+
+.hero-skeleton-button {
+  width: 132px;
+  height: 48px;
+  margin-top: 8px;
+  border-radius: var(--rounded-full);
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    width: 100%;
+    padding: var(--spacing-md);
+  }
+}

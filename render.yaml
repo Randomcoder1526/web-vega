@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: vega-web
+    runtime: node
+    plan: free
+    buildCommand: npm install --ignore-scripts && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: ALLOW_PRIVATE_PROXY
+        value: "false"
+      - key: TMDB_API_KEY
+        sync: false
+      - key: PROXY_API_URL
+        sync: false
